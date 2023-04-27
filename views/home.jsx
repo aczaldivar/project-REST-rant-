@@ -4,12 +4,12 @@ const Def = require('./default');
 function home () {
     return (
       <Def>
-          <main>
+          <main> <div>
               <h1>HOME</h1>
-              <div></div>
               <a href="/places">
-              <button className="btn-primary">Places Page</button>
+                <button className="btn-primary">Places Page</button>
               </a>
+              </div>
               </main>
       </Def>
     )
