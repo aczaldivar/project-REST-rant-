@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
       res.render('error 404')
     }
     else{
-        res.render('places/show',{place:places[id] })
+        res.render('places/show',{ place:places[id]})
     }
   });
   
