@@ -2,24 +2,22 @@ const router = require('express').Router()
 const places = require('../models/places.js')
 // GET /places
 router.get('/', (req,res)=>{
-    let places = [{
-        name: 'H-Thai-ML',
-        city: 'Seattle',
-        state: 'WA',
-        cuisines: 'Thai, Pan-Asian',
-        pic: 'https://www.hilton.com/im/en/ONTPODT/5579009/ontpo-vitarestaurant.jpg?impolicy=crop&cw=4504&ch=2983&gravity=NorthWest&xposition=0&yposition=8&rw=645&rh=427'
-      }, {
-        name: 'Coding Cat Cafe',
-        city: 'Phoenix',
-        state: 'AZ',
-        cuisines: 'Coffee, Bakery',
-        pic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Tom%27s_Restaurant%2C_NYC.jpg/1280px-Tom%27s_Restaurant%2C_NYC.jpg'
-      }]
-      
+        
    res.render('places/index', {places})
 });
 
-
+router.get('/:id/edit', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+      res.render('error404')
+  }
+  else if (!places[id]) {
+      res.render('error404')
+  }
+  else {
+    res.render('places/edit', { place: places[id],id })
+  }
+});
 
 router.get('/new', (req, res) => {
   res.render('places/new')
@@ -42,21 +40,35 @@ router.post('/', (req, res) => {
     res.redirect('/places')
   });
   
+
   router.get('/:id', (req, res) => {
-    let id= Number (req.params.id)
+    let id= Number(req.params.id)
     if (isNaN(id)){
-      res.render('error 404')
+      res.render('error404')
     }
     else if (!places[id]){
-      res.render('error 404')
+      res.render('error404')
     }
     else{
-        places.splice(id,1)
-         res.render('/places')
+        
+         res.render('places/show',{place:places[id],id})
     }
   });
   
-
+  router.delete('/:id', (req, res) => {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+      res.render('error404')
+    }
+    else if (!places[id]) {
+      res.render('error404')
+    }
+    else {
+      places.splice(id,1)
+      res.redirect('/places')
+    }
+  })
+  
 
 
 module.exports = router
