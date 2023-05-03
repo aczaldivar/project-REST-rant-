@@ -15,6 +15,7 @@ router.get('/', (req,res)=>{
 
 //PUT
   router.put('/:id', (req, res) => {
+  
     let id = Number(req.params.id)
     if (isNaN(id)) {
         res.render('error404')
