@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-
-const placeSchema = new mongoose.Schema({
+const{Schema} = mongoose
+const placeSchema = new Schema({
   name: { type: String, required: true },
   pic: { type:String, default:'http://placekitten.com/350/350'},
   cuisines: { type: String, required: true },
@@ -19,7 +19,9 @@ placeSchema.methods.showEstablished = function() {
 }
 
 
-module.exports = mongoose.model('Place', placeSchema)
+const Place = mongoose.model("Place", placeSchema)
+
+module.exports= Place 
 
 
 
