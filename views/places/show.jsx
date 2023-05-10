@@ -38,7 +38,7 @@ function show (data) {
             <h4>Serving {data.place.cuisines}</h4>
             <h4>Since</h4>
             <h1>Comments</h1>
-            <form method="POST" action={`/places/${data.place.id}?_method=DELETE`}>
+            <form method="POST" action={`/places/${data.place.id}?_method=GET`}>
               <label for="author">Author</label>
               <input type="text" id="author" name=" author"></input>
               <label for="content">Content:</label>
@@ -51,7 +51,7 @@ function show (data) {
               <input type="submit" value="Submit"></input>
             </form>
             <h3>No comments yet!</h3>
-            <form method="POST" action={`/places/${data.place.id}?_method=DELETE`}> 
+            <form method="POST" action={`/places/${data.place.id}?_method=POST`}> 
             <button type="submit" className="btn btn-danger">
            Delete
             </button>
