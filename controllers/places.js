@@ -59,16 +59,43 @@ router.get('/:id', (req, res) => {
 
 
 router.put('/:id', (req, res) => {
-  res.send('PUT /places/:id stub')
-})
+  let id = req.params.id;
+  //  Dig into req.body and make sure data is valid
+  if (!req.body.pic) {
+      // Default image if one is not provided
+      req.body.pic = "../public/images/cartoon-rest-rant.png";
+  }
+  if (!req.body.city) {
+      req.body.city = "Anytown";
+  }
+  if (!req.body.state) {
+      req.body.state = "USA";
+  }
+  db.Place.findByIdAndUpdate(id, req.body, { new: true })
+      .then((updatedPlace) => {
+          res.redirect(`/places/${id}`);
+      })
+      .catch((err) => {
+          console.log(err);
+          res.render("error404");
+      });
+});
 
 router.delete('/:id', (req, res) => {
   res.send('DELETE /places/:id stub')
 })
 
 router.get('/:id/edit', (req, res) => {
-  res.send('GET edit form stub')
-})
+  let id = req.params.id;
+  db.Place.findById(id)
+      .then((place) => {
+          res.render("places/edit", { place });
+      })
+      .catch((err) => {
+          console.log("err", err);
+          res.render("error404");
+      });
+});
 
 router.post('/:id/comment', (req, res) => {
   console.log(req.body)

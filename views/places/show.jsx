@@ -25,10 +25,10 @@ function show (data) {
         <Def>
           <main>
             <h1>{ data.place.name}</h1>
-            <a href= {`/places/${data.id}/edit`}className="btn btn-warning"> 
+            <a href= {`/places/${data.place.id}/edit`}className="btn btn-warning"> 
             Edit
             </a> 
-            <img src= "chia-fruit-drink.jpg" alt="chia drink"></img>
+            <img src= "chia-fruit-drink.jpg" alt="chia drink"/>
             <h3>Located in {data.place.city},{data.place.state}</h3>
             <h1>Rating</h1>
             <h3>Not Rated</h3>
@@ -38,19 +38,19 @@ function show (data) {
             <h4>Serving {data.place.cuisines}</h4>
             <h4>Since</h4>
             <h1>Comments</h1>
-            <form method="POST" action={`/places/${data.place.id}?_method=GET`}>
+            <form method="POST" action={`/places/${data.place.id}/comment`}>
               <label for="author">Author</label>
               <input type="text" id="author" name=" author"></input>
               <label for="content">Content:</label>
               <textarea id="content" name="content"></textarea>
-              <label for="rating">Star Rating:</label>
-              <input type="number" id="rating" name="rating" step="0.5"/>
+              <label for="Stars">Star Rating:</label>
+              <input type="number" id="Stars" name="Stars" step="0.5"/>
   
               <label for="rant">Rant:</label>
               <input type="checkbox" id="rant" name="rant"></input>
               <input type="submit" value="Submit"></input>
             </form>
-            <h3>No comments yet!</h3>
+            <h3>{comments}</h3>
             <form method="POST" action={`/places/${data.place.id}?_method=POST`}> 
             <button type="submit" className="btn btn-danger">
            Delete
