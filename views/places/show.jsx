@@ -40,11 +40,11 @@ function show (data) {
             <h1>Comments</h1>
             <form method="POST" action={`/places/${data.place.id}/comment`}>
               <label for="author">Author</label>
-              <input type="text" id="author" name=" author"></input>
+              <input type="text" id="author" name="author"></input>
               <label for="content">Content:</label>
               <textarea id="content" name="content"></textarea>
               <label for="Stars">Star Rating:</label>
-              <input type="number" id="Stars" name="Stars" step="0.5"/>
+              <input type="number" id="stars" name="stars" step="0.5"/>
   
               <label for="rant">Rant:</label>
               <input type="checkbox" id="rant" name="rant"></input>

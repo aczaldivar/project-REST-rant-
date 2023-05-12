@@ -105,7 +105,6 @@ router.post('/:id/comment', (req, res) => {
   else{
     req.body.rant= false
   }
-  res.send('GET /places/:id/comment stub')
   db.Place.findById(req.params.id)
   .then(place => {
       db.Comment.create(req.body)
