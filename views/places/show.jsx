@@ -7,7 +7,19 @@ function show (data) {
         No comments yet!
       </h3>
     )
+    let rating= (
+      <h3 className="inactive">
+        Not yet rated
+      </h3>
+    )
     if (data.place.comments.length) {
+      let sumRatings = data.place.comments.reduce ((tot,c)=>{
+        return tot+ c.stars
+      },0)
+      let averageRating = sumRatings /data.place.comments.length
+      rating =(
+        <h3>{Math.round(averageRating)} stars </h3>
+      )
       comments = data.place.comments.map(c => {
         return (
           <div className="border">
@@ -16,7 +28,9 @@ function show (data) {
             <h3>
               <stong>- {c.author}</stong>
             </h3>
-            <h4>Rating: {c.stars}</h4>
+            <h2>Rating: {c.stars}</h2>
+            {rating}
+            <br/>
           </div>
         )
       })
