@@ -57,8 +57,8 @@ function show (data,c) {
             <h4>Since</h4>
             <h1>Comments</h1>
             <form method="POST" action={`/places/${data.place.id}/comment/${c.id}?_method=DELETE`}>
-              <input type="submit" className="btn btn-danger" value="Delete Comment" />
-              
+              <input type="submit" className="btn btn-danger" value="Delete Comment" /> </form>
+              <form action={`/places/${data.place.id}/comment`} method="POST">
               <label for="author">Author</label>
               <input type="text" id="author" name="author"></input>
               <label for="content">Content:</label>
@@ -71,8 +71,8 @@ function show (data,c) {
               <input type="submit" value="Submit"></input>
             </form>
             <h3>{comments}</h3>
-            <form method="POST" action={`/places/${data.place.id}?_method=POST`}> 
-            <button type="submit" className="btn btn-danger">
+            <form method="POST" action={`/places/${data.place.id}?_method=DELETE`}> 
+            <button type="submit" className="btn btn-danger" value= "Delete">
            Delete
             </button>
             </form>     
