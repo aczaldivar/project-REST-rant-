@@ -31,8 +31,8 @@ function edit_form (data) {
                 </div>
                
                 <label htmlFor="founded">Founded</label> 
-                <input className="form-control" id="founded" name= "founded" required />
-                 <input className= "btn btn-primary" type="submit" value="Edit Place" />
+                <input className="form-control" id="founded" name= "founded" value= {data.place.founded} required />
+                 <input className= "btn btn-primary" type="submit" value="Update Place" />
                  </form>
 
             </main>

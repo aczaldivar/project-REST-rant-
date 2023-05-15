@@ -1,7 +1,7 @@
 const React = require('react')
 const Def = require('../default')
 
-function show (data) {
+function show (data,c) {
   let comments = (
       <h3 className="inactive">
         No comments yet!
@@ -27,7 +27,7 @@ function show (data) {
       comments = data.place.comments.map(c => {
         return (
           <div className="border">
-            <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
+            <h2 className="rant">{c.rant ? 'Rant! 😤' : 'Rave 😊'}</h2>
             <h4>{c.content}</h4>
             <h3>
               <stong>- {c.author}</stong>
@@ -56,7 +56,9 @@ function show (data) {
             <h4>Serving {data.place.cuisines}</h4>
             <h4>Since</h4>
             <h1>Comments</h1>
-            <form method="POST" action={`/places/${data.place.id}/comment`}>
+            <form method="POST" action={`/places/${data.place.id}/comment/${c.id}?_method=DELETE`}>
+              <input type="submit" className="btn btn-danger" value="Delete Comment" />
+              
               <label for="author">Author</label>
               <input type="text" id="author" name="author"></input>
               <label for="content">Content:</label>
